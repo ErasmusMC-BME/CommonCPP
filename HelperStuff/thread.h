@@ -176,7 +176,7 @@ public:
 */
 	virtual void SetInput( Tin * InputData );
 	virtual void SetOutput( Tout * OutputData );
-	virtual void Update(); //Prepare thread
+//	virtual void Update(); //Prepare thread
 	Tout *  GetOutput();
 	
 	Tin *m_InputData;
@@ -184,7 +184,7 @@ public:
 	SyncTimerObject *m_SyncObject;
 
 public:
-	virtual void Initialize(){};
+	//virtual void Initialize(){};
 /*
 va_list
 
@@ -206,7 +206,7 @@ the format string gives a format code for each parameter  <BR>
  - D = double  <BR>
 */
 
-	virtual void Initialize(const char *fmt, ...)
+	virtual void Initialize(const char *fmt=NULL, ...)
 	{
 		va_list args;
 		va_start(args, fmt);
@@ -228,7 +228,7 @@ the format string gives a format code for each parameter  <BR>
 /*!
     Creates a thread that begins execution on _BeginThread
 */
-	void _BeginThread()
+	void CreateRecorderThread()
 
 	{
 		threadhandle = (HANDLE)_beginthreadex(NULL, 0,thread<Tin,Tout>::ThreadStaticEntryPoint,this, CREATE_SUSPENDED, &threadid);
@@ -236,11 +236,11 @@ the format string gives a format code for each parameter  <BR>
 /*!
     Start/Resume  the execution of the thread .
 */
-	void _ResumeThread(void){ResumeThread( threadhandle );};
+	void StartRecorderThread(void){ResumeThread( threadhandle );};
 /*!
     Waits until the specified thread is ready
 */	
-	void _WaitForSingleObject(void){WaitForSingleObject(threadhandle, INFINITE);};
+	void WaitUntilRecorderThreadIsDone(void){WaitForSingleObject(threadhandle, INFINITE);};
 	
 	static unsigned __stdcall ThreadStaticEntryPoint(void * pThis)
 	{
@@ -324,10 +324,7 @@ template  <class Tin,class Tout> void thread<Tin,Tout>::SetOutput(  Tout  * Outp
 {
 	m_OutputData=OutputData;
 }
-template <class Tin,class Tout> void thread<Tin,Tout>::Update(void)
-{
 
-};
 
 //template <class Tin,class Tout>  thread<Tin,Tout> *  thread<Tin,Tout>::m_thread=0;
 
