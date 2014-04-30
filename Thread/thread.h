@@ -253,6 +253,7 @@ the format string gives a format code for each parameter  <BR>
 		return 1;          // the thread exit code
 	}
 
+  // purposely not implemented (base methode) should be implemeted in child classes 
 	virtual void ThreadEntryPoint()
 	
 	{
