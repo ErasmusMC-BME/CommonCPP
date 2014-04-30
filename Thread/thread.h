@@ -208,20 +208,23 @@ the format string gives a format code for each parameter  <BR>
 
 	virtual void Initialize(const char *fmt=NULL, ...)
 	{
-		va_list args;
-		va_start(args, fmt);
+		if(fmt)
+		{
+			va_list args;
+			va_start(args, fmt);
 
-		while (*fmt != '\0') {
-			if (*fmt == 'd') {
-				int i = va_arg(args, int);
-				std::cout << i << '\n';
-			} else if (*fmt == 's') {
-				char * s = va_arg(args, char*);
-				std::cout << s << '\n';
+			while (*fmt != '\0') {
+				if (*fmt == 'd') {
+					int i = va_arg(args, int);
+					std::cout << i << '\n';
+				} else if (*fmt == 's') {
+					char * s = va_arg(args, char*);
+					std::cout << s << '\n';
+				}
+				++fmt;
 			}
-			++fmt;
+			va_end(args);
 		}
-		va_end(args);
 	};
 	//void BeginThread(thread<Tin,Tout> *_Thread)
 
