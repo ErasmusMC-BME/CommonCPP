@@ -1,0 +1,5 @@
+HomeWork:
+http://www.boost.org/doc/libs/1_56_0/doc/html/thread.html
+http://en.highscore.de/cpp/boost/multithreading.html
+https://www.quantnet.com/threads/c-multithreading-in-boost.10028/
+http://katyscode.wordpress.com/2013/08/15/c11-boost-multi-threading-the-parallel-aggregation-pattern/
